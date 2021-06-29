@@ -46,6 +46,4 @@ class Competicao:
     def close(self, resultados):
         self.__dados['ranking'] = resultados
         self.__closed = True
- 
-
-        
+         

@@ -1,1 +1,31 @@
-{ "corrida": [], "dardo": [] }
+{
+  "corrida": {
+    "id": "corrida",
+    "titulo": "100m rasos.",
+    "image": "static/images/athletes-competition-people-public-domain.jpg",
+    "competicoes": [
+      {
+        "id": "1",
+        "nome": "Competicao 1",
+        "local": "Indonesia",
+        "data": "12/03/2022 01:23",
+        "atletas": []
+      },
+
+      {
+        "id": "2",
+        "nome": "Competicao 2",
+        "local": "Uganda",
+        "data": "01/02/2023 21:12",
+        "atletas": []
+      }
+    ]
+  },
+
+  "dardo": {
+    "id": "dardo",
+    "titulo": "Lançamento de Dardo",
+    "image": "static/images/7636333650_131e30119b_c.jpg",
+    "competicoes": []
+  }
+}
