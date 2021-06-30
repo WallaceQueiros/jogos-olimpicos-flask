@@ -1,12 +1,12 @@
-from .atleta import Atleta
+from atleta import Atleta
 
 class Competicao:
-    def __init__(self, id, nome, local, data, hora, atletas, ranking=None):
+    def __init__(self, id, nome, local, data, atletas, ranking=None):
         self.__dados = dict()
         self.__id = id
         self.__dados['nome'] = nome
         self.__dados['local'] = local
-        self.__dados['data'] = f'{data} {hora}'
+        self.__dados['data'] = data
         self.__dados['atletas'] = atletas
         self.__closed = False
         if ranking is not None:
