@@ -6,8 +6,8 @@
         [X] Criar classe competição
         [X] Criar classe atleta
         [X] Criar classe para rankear os atletas.
-        [ ] Criar classe modalidade para armazenar e um service para criar e encerrar as competicoes.
-        [ ] Criar uma classe para salvar e ler informacoes do json.
+        [X] Criar classe modalidade para armazenar e um service para criar e encerrar as competicoes.
+        [X] Criar uma classe para salvar e ler informacoes do json.
     [X] Cadastrar resultados para uma competição.
     [ ] Encerrar uma competição.
     [ ] Retornar o ranking da competição, exibindo a posição final de cada atleta.
