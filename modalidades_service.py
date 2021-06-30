@@ -20,7 +20,7 @@ class ModalidadesService:
     
     @property
     def data(self):
-        return self.__modalidades
+        return self.__modalidades.values()
 
     def add_competicao(self, modalidade, data):
         competicao = Competicao(**data)
@@ -31,7 +31,7 @@ class ModalidadesService:
         return self
 
     def __getitem__(self, key):
-        return self.data[key]
+        return self.__modalidades[key]
         
     
 
