@@ -1,8 +1,8 @@
 {
   "corrida": {
     "id": "corrida",
-    "titulo": "100m rasos.",
-    "image": "static/images/athletes-competition-people-public-domain.jpg",
+    "titulo": "Corrida 100m Rasos",
+    "image": "images/athletes-competition-people-public-domain.jpg",
     "competicoes": [
       {
         "id": "1",
@@ -25,7 +25,7 @@
   "dardo": {
     "id": "dardo",
     "titulo": "Lançamento de Dardo",
-    "image": "static/images/7636333650_131e30119b_c.jpg",
+    "image": "images/7636333650_131e30119b_c.jpg",
     "competicoes": []
   }
 }

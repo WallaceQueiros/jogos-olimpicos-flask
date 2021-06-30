@@ -5,11 +5,12 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     m = ms()
-    modalidade = m['corrida']
-    print(type(modalidade))
-    print(modalidade.competicoes)
-    return render_template('index.html', modalidade=modalidade)
+    return render_template('index.html', modalidades=m)
 
+@app.route('/<modalidade>')
+def competicoes(modalidade):
+    m = ms()[modalidade]
+    return render_template('competicoes.html', modalidade=m, competicoes=m.competicoes)
 
 
 if __name__ == '__main__':
