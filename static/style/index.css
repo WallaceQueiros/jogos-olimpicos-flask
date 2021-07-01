@@ -1,0 +1,36 @@
+.custom-card {
+    min-height: 15rem;
+    margin-bottom: 2rem;
+    background-position: center;
+    background-size: cover;
+    background-color: #5E5A5Eaa;
+    background-blend-mode:color;
+
+}
+
+.hover-img:hover {
+    background-position-y:top;
+    transition:all 1s;
+}
+
+.hover-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--c1);
+    transition:all 1s;
+}
+
+@include media-breakpoint-up(sm) {
+  .hover-img {
+    background-size: 500%;
+  }
+}
+
+a {
+    color: var(--c1);
+}
+
+a:hover {
+    color: #ffc107;
+    text-decoration: none;
+}

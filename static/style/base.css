@@ -1,0 +1,41 @@
+/*:root {
+  --white: #eae0d9;
+  --c1: #1C1C1D;
+  --c2: #494948;
+  --c3: #656563;
+  --c4: #787878;
+  --c0: #5E5A5E;
+}
+
+
+body {
+  min-height: 100vh;
+  background-color: #494948;
+  color: var(--c2);
+}
+
+
+nav-bg {
+  background-color: var(--c1);
+}
+
+modal-bg {
+  background-color: var(--c3);
+}
+
+available-btn {
+  background-color: var(--c4);
+}
+
+unavailable-resource {
+  background-color: var(--c0);
+}
+
+
+*/
+
+
+body {
+  min-height: 100vh;
+
+}
