@@ -1,38 +1,35 @@
 from modalidade import Modalidade
 from json_service import *
-from ranking import Ranking
+from dardo import Dardo
+from corrida import Corrida
 
 class ModalidadesService:
     def __init__(self):
         json_data = read()
 
-        corrida = Modalidade(
-            **json_data['corrida'], 
-            ranking=Ranking()
-        )
-        
-        dardo = Modalidade(
-            **json_data['dardo'], 
-            ranking = Ranking(maior_vlr_primeiro=True, reducer=max)
-        )
+        corrida = Corrida(json_data['corrida'])
+        dardo = Dardo(json_data['dardo'])
 
-        self.__modalidades = dict({'dardo': dardo, 'corrida':corrida})
-    
+        self.__modalidades = {'dardo': dardo, 'corrida': corrida}
+
     @property
-    def data(self):
-        return self.__modalidades.values()
+    def modalidades(self):
+        return list(self.__modalidades.values())
 
-    def add_competicao(self, modalidade, data):
-        competicao = Competicao(**data)
-        self.data[modalidade].competicoes += [competicao]
-        write(self.data)
+    def add_competicao(self, modalidade, json_data):
+        self.__modalidades[modalidade].append(json_data)
+        self.__write()
     
-    def list_competicao(self, modalidade):
-        return self
+    def encerra_competicao(self, modalidade, c_id, resultados):
+        self.modalidades[modalidade].encerra(c_id, resultados)
+        self.__write()
+
+    
+    def __write(self):
+        d = dict([(key, dict(value)) for key, value in self.__modalidades.items()])
+        write(d)
 
     def __getitem__(self, key):
         return self.__modalidades[key]
-        
-    
 
-        
+

@@ -1,49 +1,54 @@
 from competicao import Competicao
 from ranking import Ranking
+from abc import ABC, abstractmethod
 
-class Modalidade:
-    def __init__(self, id, titulo, competicoes, ranking, image=None):
-        self.__data = dict()
-        self.__data['image'] = image
-        self.__data['id'] = id
-        self.__data['titulo'] = titulo
-        self.__data['competicoes'] = competicoes
-        self.__data['ranking'] = ranking
+
+class Modalidade(ABC):
+    def __init__(self, id, titulo, competicoes, provas, image):
+        self.__provas = int(provas)
+        self.__image = image
+        self.__id = id
+        self.__titulo = titulo
+        self.__competicoes = [Competicao(**c) for c in competicoes]
     
     @property
+    def provas(self):
+        return self.__provas
+
+    @property
     def img(self):
-        return self.__data['image']
+        return self.__image
 
     @property
     def id(self):
-        return self.__data['id']
+        return self.__id
 
     @property
     def titulo(self):
-        return self.__data['titulo']
-
-    @property
-    def ranking(self):
-        return self.__data['ranking']
+        return self.__titulo
 
     @property
     def competicoes(self):
-        return [Competicao(**d) for d in self.__data['competicoes']]
+        return self.__competicoes
 
-    @competicoes.setter
-    def competicoes(self, lista):
-        self.__data['competicoes'] = lista
+    def append(self, competicao_data):
+        qnt = len(self.__competicoes)
+        competicao = Competicao(id=qnt, **competicao_data)
+        self.competicoes.append(competicao)
+        
+    
+    def __getitem__(self, competicao_id):
+        return self.competicoes[competicao_id]
+    
+    def __iter__(self):
+        return iter({
+            'provas': self.provas,
+            'image': self.img,
+            'id': self.id,
+            'titulo': self.titulo,
+            'competicoes': [dict(c) for c in self.__competicoes],
+        }.items())
 
-    @property
-    def data(self):
-        return self.__data['titulo'], self.__data['competicoes']
-
-    def add_competicao(self, competicao_data):
-        qnt = len(self.data)
-        competicao = Competicao(id=qnt, **data)
-        self.__data['competicoes'].append(competicao)
-
-    def close_competicao(self, competicao_id, resultados):
-        ranking = self.__data['ranking'].rank(resultados)
-        self.data[competicao_id].close(ranking)
-
+    @abstractmethod
+    def encerra(self, competicao_id, resultados):
+        pass
