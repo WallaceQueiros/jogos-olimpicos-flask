@@ -7,6 +7,7 @@ def read():
         return json.load(f)
          
 
-def write(competicoes):
+def write(modalidades):
+    print(f'MODALIDADES =======>{modalidades}')
     with open(json_path, 'w') as f:
-        json.dump({'competicoes': competicoes}, f)
+        json.dump(modalidades, f)
