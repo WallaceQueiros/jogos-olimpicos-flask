@@ -8,6 +8,33 @@
 {% endblock %}
 {% block content %}
     {% for c in competicoes %}
-        
+        <div class="text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <h6 class="text-gray-dark pb-2">{{ c.nome }}</h6>
+                    <button class="btn btn-sm btn-dark d-block custom-btn {% if c.encerrada %}disabled{% endif %}" href="#">Cadastrar Resultados</button>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <span>{{ c.local }} - {{ c.data }}</span>
+                    <a class="btn btn-sm btn-dark d-block custom-btn {% if not c.encerrada %}disabled{% endif %}" href="#">Ver Ranking</a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
+    {% if competicoes|length == 0 %}
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray text-center">
+                <p>Não há competições cadastradas nessa modalidade.</p>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block item %}Competicao{% endblock %}
+
+{% block scripts %}
+    <script>
+        $("#cadastrar").click(() => window.location.href = '/{{ modalidade.id }}/cadastro');
+    </script>
 {% endblock %}

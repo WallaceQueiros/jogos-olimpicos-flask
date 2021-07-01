@@ -1,19 +1,23 @@
 {% extends "base.html" %}
 {% block titulo %}Jogos Olímpicos{% endblock %}
-{% block subtitulo %}Index{% endblock %}
+{% block subtitulo %}Modalidades{% endblock %}
 {% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='style/index.css') }}" />{% endblock %}
 {% block pageheader %}
     {{ super() }}
 {% endblock %}
 {% block content %}
-    {% for modalidade in modalidades.data %}
+    {% for modalidade in modalidades %}
         <a href="/{{ modalidade.id }}">
-            <div class="card" style="width: 20rem;">
-                <div class="card-img-caption" style="background-image:url({{ url_for('static', filename=modalidade.img) }})">
-                    <h1 class="card-text">{{ modalidade.titulo }}</h1>
+            <div class="card custom-card hover-img" style="background-image:url({{ url_for('static', filename=modalidade.img) }})">
+                <div class="card-img-caption text-center my-auto">
+                    <h1 class="text-uppercase font-weight-bold mb-0">{{ modalidade.titulo }}</h1>
                 </div>
             </div>
 
         </a>
     {% endfor %}
+{% endblock %}
+
+{% block item %} 
+    Modalidade
 {% endblock %}
