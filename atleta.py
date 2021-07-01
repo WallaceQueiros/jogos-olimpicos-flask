@@ -1,26 +1,30 @@
 class Atleta:
     def __init__(self, nome, idade, altura, peso):
-        self.__data = dict()
-        self.__data['nome'] = nome
-        self.__data['idade'] = idade
-        self.__data['altura'] = altura
-        self.__data['peso'] = peso
+        self.__nome = nome
+        self.__idade = idade
+        self.__altura = altura
+        self.__peso = peso
 
     @property
     def nome(self):
-        return self.__data['nome']
+        return self.__nome
 
     @property
     def idade(self):
-        return self.__data['idade']
+        return self.__idade
     
     @property
     def altura(self):
-        return self.__data['altura']
+        return self.__altura
 
     @property
     def peso(self):
-        return self.__data['peso']
+        return self.__peso
 
-    def __dict__(self):
-        return self.__data
+    def __iter__(self):
+        return iter({
+            'nome': self.__nome,
+            'idade': self.__idade,
+            'altura': self.__altura,
+            'peso': self.__peso
+        }.items())

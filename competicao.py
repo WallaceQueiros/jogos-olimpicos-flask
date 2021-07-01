@@ -1,16 +1,17 @@
 from atleta import Atleta
 
 class Competicao:
-    def __init__(self, id, nome, local, data, atletas, ranking=None):
-        self.__dados = dict()
+    def __init__(self, id, nome, local, data, atletas, encerrada=False, ranking=None):
         self.__id = id
-        self.__dados['nome'] = nome
-        self.__dados['local'] = local
-        self.__dados['data'] = data
-        self.__dados['atletas'] = atletas
-        self.__closed = False
-        if ranking is not None:
-            self.close(ranking)
+        self.__nome = nome
+        self.__local = local
+        self.__data = data
+        self.__atletas = [Atleta(**a) for a in atletas]
+        self.__encerrada = bool(encerrada)
+        self.__ranking = ranking
+        if not self.encerrada and ranking is not None:
+            self.encerra(ranking)
+
 
     @property
     def id(self):
@@ -18,32 +19,44 @@ class Competicao:
 
     @property
     def nome(self):
-        return self.__dados['nome']
+        return self.__nome
     
     @property
     def local(self):
-        return self.__dados['local']
-    
-    @property
-    def date(self):
-        return self.__dados['data']
-    
-    @property
-    def atletas(self):
-        return [Atleta(**a) for a in self.__dados['atletas']]
-
-    @property
-    def atletas_nomes(self):
-        return [a['nome'] for a in self.__dados['atletas'].items()]
+        return self.__local
     
     @property
     def data(self):
-        return self.__dados
+        return self.__data
+    
+    @property
+    def atletas(self):
+        return self.__atletas
 
-    def __dict__(self):
-        return self.data
+    @property
+    def encerrada(self):
+        return self.__encerrada
+    
+    @property 
+    def ranking(self):
+        return self.__ranking    
 
-    def close(self, resultados):
-        self.__dados['ranking'] = resultados
-        self.__closed = True
+    @property
+    def atletas_nomes(self):
+        return [a.nome for a in self.atletas]
+
+    def __iter__(self):
+        return iter({
+            'nome': self.nome,
+            'id': self.id, 
+            'local': self.local, 
+            'data': self.data, 
+            'atletas': [dict(a) for a in self.atletas],
+            'encerrada': 1 if self.encerrada else 0,
+            'ranking': self.__ranking if self.__ranking else 0
+        }.items())
+
+    def encerra(self, resultados):
+        self.__ranking = resultados
+        self.__encerrada = True
          
