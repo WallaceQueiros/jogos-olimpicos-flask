@@ -1,16 +1,13 @@
 from atleta import Atleta
 
 class Competicao:
-    def __init__(self, id, nome, local, data, atletas, encerrada=False, ranking=None):
+    def __init__(self, id, nome, local, data, atletas, ranking=[]):
         self.__id = id
         self.__nome = nome
         self.__local = local
         self.__data = data
         self.__atletas = [Atleta(**a) for a in atletas]
-        self.__encerrada = bool(encerrada)
         self.__ranking = ranking
-        if not self.encerrada and ranking is not None:
-            self.encerra(ranking)
 
 
     @property
@@ -35,7 +32,7 @@ class Competicao:
 
     @property
     def encerrada(self):
-        return self.__encerrada
+        return len(self.ranking) == len(self.atletas)
     
     @property 
     def ranking(self):
@@ -52,11 +49,9 @@ class Competicao:
             'local': self.local, 
             'data': self.data, 
             'atletas': [dict(a) for a in self.atletas],
-            'encerrada': 1 if self.encerrada else 0,
-            'ranking': self.__ranking if self.__ranking else 0
+            'ranking': self.__ranking
         }.items())
 
     def encerra(self, resultados):
         self.__ranking = resultados
-        self.__encerrada = True
          

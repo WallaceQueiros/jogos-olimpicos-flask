@@ -21,11 +21,11 @@ class ModalidadesService:
         self.__write()
     
     def encerra_competicao(self, modalidade, c_id, resultados):
-        self.modalidades[modalidade].encerra(c_id, resultados)
+        self.__modalidades[modalidade].encerra(c_id, resultados)
         self.__write()
-
     
     def __write(self):
+        print(self.__modalidades)
         d = dict([(key, dict(value)) for key, value in self.__modalidades.items()])
         write(d)
 

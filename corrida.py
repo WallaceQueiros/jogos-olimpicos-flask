@@ -7,4 +7,6 @@ class Corrida(Modalidade):
     
     def encerra(self, competicao_id, resultados):
         ranking = r.rank(resultados, maior_vlr_primeiro=False)
+        if self[competicao_id].encerrada:
+            raise KeyError
         self[competicao_id].encerra(ranking)

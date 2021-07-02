@@ -35,7 +35,6 @@ class Modalidade(ABC):
         qnt = len(self.__competicoes)
         competicao = Competicao(id=qnt, **competicao_data)
         self.competicoes.append(competicao)
-        
     
     def __getitem__(self, competicao_id):
         return self.competicoes[competicao_id]
