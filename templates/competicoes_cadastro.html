@@ -7,7 +7,7 @@
     <a href="/{{ modalidade.id }}"><h8><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</h8></a>
 {% endblock %}
 {% block content %}
-    <form class="needs-validation mt-2" onsubmit="handle_submit()">
+    <form id="form" class="needs-validation mt-2">
         <div id="competicao">
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -50,12 +50,12 @@
     </form>
     
 {% endblock %}
-{% block item %} Atleta {% endblock %}
+{% block item %}<i class="fa fa-plus"></i> Atleta {% endblock %}
 {% block scripts %}
     <script>
         const conta_atletas = () => Number($("#atleta-container").data("qnt"));
 
-        const add_atleta = function() {
+        const add_atleta = () => {
             var qnt_atletas = conta_atletas() + 1;
             $('.btn-danger').hide();
             var new_atleta = `<div id="a${qnt_atletas}" class="media-body pb-3 mb-2 small lh-125 border-bottom border-gray">
@@ -65,7 +65,7 @@
                         </div>
                         
                         <div class="input-group">
-                            <input type="text" class="form-control mr-2" placeholder="Nome Sobrenome" id ="${qnt_atletas}-nome" required>
+                            <input type="text" class="form-control mr-2" placeholder="Nome" id ="${qnt_atletas}-nome" required>
                             <div class="invalid-feedback">
                                 É preciso informar o nome do atleta.
                             </div>
@@ -81,7 +81,7 @@
                             <div class="invalid-feedback">
                                 É preciso informar o peso do atleta.
                             </div>
-                            <button type="button" class="btn btn-danger" onClick="remove_atleta('#a${qnt_atletas}')" data-toggle="tooltip" data-placement="bottom" title="Uma competição deve ter no mínimo 2 atletas." id="a${qnt_atletas}-rm-btn"><i class="fa fa-window-close black"></i>  </button>
+                            <button type="button" class="btn btn-danger" onClick="remove_atleta('#a${qnt_atletas}')" ${qnt_atletas === 2 ? 'data-toggle="tooltip" data-placement="bottom" title="Uma competição deve ter no mínimo 2 atletas."' : ''} id="a${qnt_atletas}-rm-btn"><i class="fa fa-window-close black"></i>  </button>
 
                         </div>
                     </div>
@@ -93,18 +93,20 @@
         
         const remove_atleta = (id) => {
             var qnt_atletas = Number($("#atleta-container").data("qnt"));
-            if (qnt_atletas <= 2) {
-                $(`${id}-rm-btn`).tooltip();
-            } else {
+            if (qnt_atletas > 2) {
                 $(id).remove();
                 qnt_atletas = Number(qnt_atletas) - 1;
                 qnt_atletas = qnt_atletas.toString();
                 $("#atleta-container").data("qnt", qnt_atletas);
                 $(`#a${qnt_atletas}-rm-btn`).show();
             }
+            if (qnt_atletas <= 3) {
+                $(`#a2-rm-btn`).tooltip();
+            }
         };
 
-        const handle_submit = () => {
+        $("#form").submit((event) => {
+            event.preventDefault();
             var qnt = conta_atletas();
             var data = {
                 "nome": $("#competicao-nome").val(),
@@ -124,14 +126,16 @@
             $.ajax({ 
                 url: `/{{ modalidade.id }}/cadastro/`, 
                 method: 'POST',
-                'dataType': 'json',
+                dataType: 'json',
                 processData: false,
-                'contentType': 'application/json',
-                'data':JSON.stringify(data),
-                'success': console.log('ASDASD')
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: setTimeout(window.location.href='/{{ modalidade.id }}', 500)
             });
-        };
+            ;
+        });
         
+        add_atleta();
         add_atleta();
         add_atleta();
         $("#cadastrar").click(add_atleta);
