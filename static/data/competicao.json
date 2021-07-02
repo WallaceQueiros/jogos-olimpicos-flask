@@ -1,1 +1,50 @@
-{"dardo": {"provas": 3, "image": "images/7636333650_131e30119b_c.jpg", "id": "dardo", "titulo": "Lan\u00e7amento de Dardo", "competicoes": []}, "corrida": {"provas": 1, "image": "images/athletes-competition-people-public-domain.jpg", "id": "corrida", "titulo": "Corrida 100m Rasos", "competicoes": [{"nome": "Competicao 1", "id": "1", "local": "Indonesia", "data": "12/03/2022 01:23", "atletas": [], "encerrada": 0, "ranking": 0}, {"nome": "Competicao 2", "id": "2", "local": "Uganda", "data": "01/02/2023 21:12", "atletas": [], "encerrada": 0, "ranking": 0}, {"nome": "Sub-23", "id": 2, "local": "Brasil", "data": "22/12/2022 13:45", "atletas": [{"nome": "Lorem ipsum", "idade": "123", "altura": "1.50", "peso": "123"}, {"nome": "Asd Qwe", "idade": "321", "altura": "1.23", "peso": "123"}], "encerrada": 0, "ranking": 0}]}}
+{
+  "dardo": {
+    "provas": 3,
+    "image": "images/7636333650_131e30119b_c.jpg",
+    "id": "dardo",
+    "titulo": "Lan\u00e7amento de Dardo",
+    "competicoes": [
+      {
+        "nome": "Sub-20",
+        "id": 0,
+        "local": "Panama",
+        "data": "22/12/2022 21:12",
+        "atletas": [
+          { "nome": "Joao", "idade": "43", "altura": "2.23", "peso": "123" },
+          {
+            "nome": "Lorem Ipsum",
+            "idade": "32",
+            "altura": "2.22",
+            "peso": "32"
+          }
+        ],
+        "ranking": []
+      },
+      {
+        "nome": "Sub-55",
+        "id": 1,
+        "local": "Uganda",
+        "data": "22/12/2022 21:12",
+        "atletas": [
+          { "nome": "Dirceu", "idade": "23", "altura": "2.23", "peso": "123" },
+          {
+            "nome": "Lorem Ipsum",
+            "idade": "32",
+            "altura": "2.22",
+            "peso": "32"
+          },
+          { "nome": "Mario", "idade": "55", "altura": "1.50", "peso": "55" }
+        ],
+        "ranking": ["Mario", "Lorem Ipsum", "Dirceu"]
+      }
+    ]
+  },
+  "corrida": {
+    "provas": 1,
+    "image": "images/athletes-competition-people-public-domain.jpg",
+    "id": "corrida",
+    "titulo": "Corrida 100m Rasos",
+    "competicoes": []
+  }
+}
