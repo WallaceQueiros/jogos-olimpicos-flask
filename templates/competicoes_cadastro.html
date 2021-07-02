@@ -4,7 +4,7 @@
 {% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='style/competicoes_cadastro.css') }}" />{% endblock %}
 {% block pageheader %}
     {{ super() }}
-    <a href="/{{ modalidade.id }}"><h8><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</h8></a>
+    <a class="nav-a-custom" href="/{{ modalidade.id }}"><h8><i class="fa fa-arrow-left nav-a-custom" aria-hidden="true"></i> Voltar</h8></a>
 {% endblock %}
 {% block content %}
     <form id="form" class="needs-validation mt-2">

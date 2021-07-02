@@ -4,7 +4,10 @@
 {% block head %}<link rel="stylesheet" href="{{ url_for('static', filename='style/index.css') }}" />{% endblock %}
 {% block pageheader %}
     {{ super() }}
+    <h8><i class="fa fa-home nav-a-custom" aria-hidden="true"></i></h8>
 {% endblock %}
+
+
 {% block content %}
     {% for modalidade in modalidades %}
         <a href="/{{ modalidade.id }}">

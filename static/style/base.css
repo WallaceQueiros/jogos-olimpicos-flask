@@ -39,3 +39,22 @@ body {
   min-height: 100vh;
 
 }
+
+nav
+{
+   position: fixed;
+   top: 0px;
+}
+
+.container-custom {
+  margin-top: 6rem;
+}
+
+.nav-a-custom {
+  color: #ffc107
+}
+
+.nav-a-custom:hover {
+  color: #ffc107;
+  text-decoration: none;
+}

@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}" />
-   
+        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -15,18 +15,18 @@
         {% endblock %}
     </head>
     <body class="bg-light">
-        
-        <header class="text-center">
-            <h3 class="display-4 font-weight-bold">{{ self.titulo() }}</h3>
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">{{ self.titulo() }}</a>
+            <p class="font-italic text-muted mb-0 text-center">{% block subtitulo %}{% endblock %}</p>
+            <p class="font-italic nav-a-custom">{% block icone %}{% endblock %}</p>        
             {% block pageheader %}
-                <p class="font-italic text-muted mb-0">{% block subtitulo %}{% endblock %}</p>
-                <p class="font-italic">{% block icone %}{% endblock %}</p>        
-            {% endblock %}
-        </header>
             
-        <div class="container">
-            <div class="my-3 p-3 bg-white rounded box-shadow">
-                <h4 class="border-bottom border-gray pb-2 mb-0">{{ self.subtitulo() }}</h4>
+            {% endblock %}
+        </nav>
+            
+        <div class="container container-custom">
+            <div class="my-3 p-3 bg-white rounded box-shadow justify-content-center mt-5 text-center">
+                <h8 class="pb-2 mb-3 text-muted ">{% block containertitulo %}{% endblock %}</h8>
         
                 {% block content %}
                 {% endblock %}
