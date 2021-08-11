@@ -4,41 +4,7 @@
     "image": "images/7636333650_131e30119b_c.jpg",
     "id": "dardo",
     "titulo": "Lan\u00e7amento de Dardo",
-    "competicoes": [
-      {
-        "nome": "Sub-20",
-        "id": 0,
-        "local": "Panama",
-        "data": "22/12/2022 21:12",
-        "atletas": [
-          { "nome": "Joao", "idade": "43", "altura": "2.23", "peso": "123" },
-          {
-            "nome": "Lorem Ipsum",
-            "idade": "32",
-            "altura": "2.22",
-            "peso": "32"
-          }
-        ],
-        "ranking": []
-      },
-      {
-        "nome": "Sub-55",
-        "id": 1,
-        "local": "Uganda",
-        "data": "22/12/2022 21:12",
-        "atletas": [
-          { "nome": "Dirceu", "idade": "23", "altura": "2.23", "peso": "123" },
-          {
-            "nome": "Lorem Ipsum",
-            "idade": "32",
-            "altura": "2.22",
-            "peso": "32"
-          },
-          { "nome": "Mario", "idade": "55", "altura": "1.50", "peso": "55" }
-        ],
-        "ranking": ["Mario", "Lorem Ipsum", "Dirceu"]
-      }
-    ]
+    "competicoes": []
   },
   "corrida": {
     "provas": 1,

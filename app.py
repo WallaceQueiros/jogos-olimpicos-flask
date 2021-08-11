@@ -42,7 +42,10 @@ def cadastra_resultados_controller(modalidade, cid):
         print(data)
         modalidades.encerra_competicao(modalidade, cid, data)
     m = modalidades[modalidade]
-    return render_template('resultados.html', modalidade=m,competicao=m[cid])
+    competicao = m[cid]
+    if competicao.encerrada:
+        return render_template('resultados.html', modalidade=m, competicao=m[cid])
+    return render_template('resultados_cadastro.html', modalidade=m,competicao=m[cid])
 
 @app.route('/favicon.ico')
 def favicon():

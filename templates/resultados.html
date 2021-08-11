@@ -28,99 +28,33 @@
             </div>
         </div>
         <hr class="mt-2">
-        {% if not competicao.encerrada %}
-            <form id="form" class="text-muted pt-3 needs-validation mt-2">
-                <h4 class="text-center w-100"><strong>Resultados</strong></h4>
-                {% for a in competicao.atletas %}
-                    <div id="{{ a.nome }}" class="media-body pb-3 mb-2 small lh-125 border-bottom border-gray">
-                        <div class="mt-3 d-flex justify-content-between align-items-center w-100">
-                            <div class="mt-2 d-block text-center" style="width:20rem">
-                                <strong>{{ a.nome }}</strong>
-                            </div>
-                            <div class="input-group">
-                                {% for p in range(modalidade.provas) %}
-                                    <input type="text" class="form-control mr-2" data-nome="{{ a.nome }}" data-id="{{ a.nome.replace(' ', '-') }}" placeholder="Prova {{ p }}" id="{{ a.nome.replace(' ', '-') }}-{{ p }}" required>
-                                    <div class="invalid-feedback">
-                                        É preciso informar o resultado.
-                                    </div>
-                                {% endfor %}
-                            </div>
-
+        <div id="atleta-container" class="pt-3 mt-2">
+            <h4 class="text-center w-100"><strong>Ranking</strong></h4>
+            {% for atleta in competicao.ranking %}
+                <span id="{{atleta.nome}}" class="media-body pb-3 mb-2 small lh-125 border-bottom border-gray">
+                    <div class="mt-3 ml-5 d-flex justify-content-start align-items-center w-100">
+                        <div class="mt-2 d-block" style="width:4rem">
+                            <strong>{{ loop.index }}°</strong>
+                            <i class="{% if loop.index0 < 3 %}
+                                {{ ['fa fa-trophy', 'fa fa-medal', 'fa fa-medal'][ loop.index0] }}
+                            {% else %}
+                                fa fa-award
+                            {% endif %}"></i> 
                         </div>
-                    </div>
-                {% endfor %}
-            
-        {% else %}
-            <div id="atleta-container" class="pt-3 mt-2">
-                <h4 class="text-center w-100"><strong>Ranking</strong></h4>
-                {% for atleta in competicao.ranking %}
-                    <span id="{{atleta.nome}}" class="media-body pb-3 mb-2 small lh-125 border-bottom border-gray">
-                        <div class="mt-3 ml-10 d-flex justify-content-start align-items-center w-100">
-                            <div class="mt-2 d-block" style="width:4rem">
-                                <strong>{{ loop.index }}°</strong>
-                                {% if loop.index <= 3 %}
-                                    <i class="{{ ['fa fa-trophy', 'fa fa-medal', 'fa fa-award'][ loop.index0] }}"></i>
-                                {% endif %} 
-                            </div>
-                            <div class="d-block">
-                                <strong class="text-center">{{ atleta }}</strong>
-                            </div>
-
+                        <div class="d-block">
+                            <strong class="text-center">{{ atleta }}</strong>
                         </div>
+
                     </div>
-                {% endfor %}
-        {% endif %}
+                </span>
+            {% endfor %}
 {% endblock %}
 
 {% block content2 %}
-    {% if competicao.encerrada %}  
-        </form>
-    {% else %}
-        </div>    
-    {% endif %}             
+    </div>               
 {% endblock %}
 
 {% block item %} Encerrar {% endblock %}
 {% block scripts %}
-    <script>
-
-        {% if competicao.encerrada %}  
-            $('.btn-warning').hide();
-        {% else %}
-            send = async function(data) {
-                await $.ajax({ 
-                    url: `/{{ modalidade.id }}/{{ competicao.id }}`, 
-                    method:"POST",
-                    dataType:"json",
-                    contentType:"application/json",
-                    data: JSON.stringify(data),
-                    async: false,
-                    success: setTimeout(500, window.location.href='/{{ modalidade.id }}/{{ competicao.id }}')
-                });
-            }
-
-            $('.btn-warning').prop("type", "submit")
-            $("#form").submit(function(event) {
-                event.preventDefault();
-
-                const provas = {{ modalidade.provas }};
-
-                var ids = $('#form input[type=text]')
-                    .map(function() {return '#'+$(this).data('id')} );
-
-
-                var data = {};
-
-                [...ids].forEach((id) => {
-                    var id_provas = [...Array(provas).keys()].map(key => `${id}-${key}`)
-                    var nome = $(`${id}-0`).data('nome');
-                    var vlr = [...id_provas.map(id => $(id).val())];
-                    data[nome] = vlr;  
-                });
-
-                send(data);
-                
-            });
-        {% endif %}  
-    </script>
+    <script>$('.btn-warning').hide();</script>
 {% endblock %}
